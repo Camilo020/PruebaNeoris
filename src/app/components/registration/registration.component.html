@@ -1,54 +1,112 @@
-<div class="container  pt-3  gap-3">
-    <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)" class="gap-3">
-      <div class="row g-3">
-
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="firstName">First Name:</label>
-          <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="lastName">Last Name:</label>
-          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone:</label>
-          <input type="tel" class="form-control" id="phone" name="phone" [(ngModel)]="phone" required>
-        </div>
-
-        <div class="col-4">
-          <button type="submit" class="btn btn-primary" click="onSave()">Save</button>
+<div class="container pt-3 gap-3">
+  <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)" class="gap-3">
+    <div class="row g-3">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          #nameModel="ngModel"
+          [class.is-invalid]="nameModel.invalid && nameModel.touched"
+          required
+        />
+        <div
+          *ngIf="nameModel.invalid && nameModel.touched"
+          class="invalid-feedback"
+        >
+          Name is required.
         </div>
       </div>
-    </form>
+
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="firstName"
+          #firstNameModel="ngModel"
+          [class.is-invalid]="firstNameModel.invalid && firstNameModel.touched"
+          required
+        />
+        <div
+          *ngIf="firstNameModel.invalid && firstNameModel.touched"
+          class="invalid-feedback"
+        >
+          First Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          name="lastName"
+          [(ngModel)]="lastName"
+          #lastNameModel="ngModel"
+          [class.is-invalid]="lastNameModel.invalid && lastNameModel.touched"
+          required
+        />
+        <div
+          *ngIf="lastNameModel.invalid && lastNameModel.touched"
+          class="invalid-feedback"
+        >
+          Last Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="phone"
+          name="phone"
+          [(ngModel)]="phone"
+          #phoneModel="ngModel"
+          [class.is-invalid]="phoneModel.invalid && phoneModel.touched"
+          required
+        />
+        <div
+          *ngIf="phoneModel.invalid && phoneModel.touched"
+          class="invalid-feedback"
+        >
+          Phone is is required.
+        </div>
+      </div>
+
+      <div class="col-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <div class="container pt-3">
   <table class="table table-striped">
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Phone</th> 
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let client of clients">
-              <td>{{ client.Id }}</td>
-              <td>{{ client.Name }}</td>
-              <td>{{ client.FirstName }}</td>
-              <td>{{ client.LastName }}</td>
-              <td>{{ client.Phone }}</td> 
-          </tr>
-      </tbody>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.Id }}</td>
+        <td>{{ client.Name }}</td>
+        <td>{{ client.FirstName }}</td>
+        <td>{{ client.LastName }}</td>
+        <td>{{ client.Phone }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
-

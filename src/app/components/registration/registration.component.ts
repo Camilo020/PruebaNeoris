@@ -9,20 +9,19 @@ const clientCollection: Client[] = [];
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
 })
-
 export class RegistrationComponent {
   id: number = 0;
-  name: string = "";
-  firstName : string = "";
-  lastName: string = "";
-  phone: string = "";
+  name: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  phone: string = '';
 
   clients: Client[] = [];
 
-  constructor(private clientService: ClientService) { 
-     localStorage.clear();
+  constructor(private clientService: ClientService) {
+    localStorage.clear();
   }
 
   ngOnInit(): void {
@@ -30,21 +29,30 @@ export class RegistrationComponent {
   }
 
   onSubmit(form: NgForm) {
+    if (form.invalid) {
+      alert(
+        'Faltan campos por capturar. Se requieren todos los campos obligatorios.'
+      );
+      form.control.markAllAsTouched();
+      return;
+    }
+
     let client: Client;
     client = {
-         Id:  0,
-         Name:  this.name,
-         FirstName:  this.firstName,
-         LastName:  this.lastName,
-         Phone:  this.phone
-    } 
-    
-    this.clientService.saveClient(client)
-    alert("Cliente guardado correctamente.");
+      Id: 0,
+      Name: this.name,
+      FirstName: this.firstName,
+      LastName: this.lastName,
+      Phone: this.phone,
+    };
+
+    this.clientService.saveClient(client);
+    alert('Cliente guardado correctamente.');
     this.getClients();
+    form.resetForm();
   }
 
- getClients(){  
-    this.clients = this.clientService.getClients()
+  getClients() {
+    this.clients = this.clientService.getClients();
   }
 }
