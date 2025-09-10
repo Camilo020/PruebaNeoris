@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../interfaces/client';
 import { NgForm } from '@angular/forms';
+import { AlertMessages } from '../../core/constants/messages.const';
 
 const clientCollection: Client[] = [];
 
@@ -11,7 +11,7 @@ const clientCollection: Client[] = [];
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   id: number = 0;
   name: string = '';
   firstName: string = '';
@@ -31,9 +31,7 @@ export class RegistrationComponent {
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
-      alert(
-        'Faltan campos por capturar. Se requieren todos los campos obligatorios.'
-      );
+      alert(AlertMessages.error.requiredFields);
       form.control.markAllAsTouched();
       return;
     }
@@ -49,7 +47,7 @@ export class RegistrationComponent {
     };
 
     this.clientService.saveClient(client);
-    alert('Cliente guardado correctamente.');
+    alert(AlertMessages.success.clientSaved);
     this.getClients();
     form.resetForm();
   }
@@ -59,12 +57,10 @@ export class RegistrationComponent {
   }
 
   onDelete(id: number) {
-    const confirmed = confirm(
-      '¿Estás seguro de que deseas eliminar este cliente?'
-    );
+    const confirmed = confirm(AlertMessages.confirmation.deleteClient);
     if (confirmed) {
       this.clientService.deleteClient(id);
-      alert('Cliente eliminado correctamente.');
+      alert(AlertMessages.success.clientDeleted);
       this.getClients();
     }
   }
