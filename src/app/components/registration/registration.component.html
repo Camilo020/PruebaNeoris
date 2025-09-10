@@ -2,7 +2,7 @@
   <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)" class="gap-3">
     <div class="row g-3">
       <div class="form-group">
-        <label for="name">Name:</label>
+        <label for="name">Nombre:</label>
         <input
           type="text"
           class="form-control"
@@ -17,12 +17,12 @@
           *ngIf="nameModel.invalid && nameModel.touched"
           class="invalid-feedback"
         >
-          Name is required.
+          <div *ngIf="nameModel.errors?.['required']">Name is required.</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="firstName">First Name:</label>
+        <label for="firstName">Apellido Paterno:</label>
         <input
           type="text"
           class="form-control"
@@ -37,12 +37,14 @@
           *ngIf="firstNameModel.invalid && firstNameModel.touched"
           class="invalid-feedback"
         >
-          First Name is required.
+          <div *ngIf="firstNameModel.errors?.['required']">
+            First Name is required.
+          </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="lastName">Last Name:</label>
+        <label for="lastName">Apellido Materno:</label>
         <input
           type="text"
           class="form-control"
@@ -57,12 +59,14 @@
           *ngIf="lastNameModel.invalid && lastNameModel.touched"
           class="invalid-feedback"
         >
-          Last Name is required.
+          <div *ngIf="lastNameModel.errors?.['required']">
+            Last Name is required.
+          </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="phone">Phone:</label>
+        <label for="phone">Teléfono:</label>
         <input
           type="tel"
           class="form-control"
@@ -72,17 +76,21 @@
           #phoneModel="ngModel"
           [class.is-invalid]="phoneModel.invalid && phoneModel.touched"
           required
+          pattern="^[0-9]*$"
         />
         <div
           *ngIf="phoneModel.invalid && phoneModel.touched"
           class="invalid-feedback"
         >
-          Phone is is required.
+          <div *ngIf="phoneModel.errors?.['required']">Phone is required.</div>
+          <div *ngIf="phoneModel.errors?.['pattern']">
+            The telephone must only contain numbers.
+          </div>
         </div>
       </div>
 
       <div class="col-4">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </form>
