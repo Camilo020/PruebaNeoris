@@ -47,4 +47,11 @@ export class ClientService {
 
     return this.clients;
   }
+
+  public deleteClient(id: number) {
+    let clients = this.getClients();
+    clients = clients.filter((c) => c.Id !== id);
+    localStorage.setItem('Clients', JSON.stringify(clients));
+    this.clients = clients;
+  }
 }

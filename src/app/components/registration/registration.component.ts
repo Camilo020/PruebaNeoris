@@ -57,4 +57,15 @@ export class RegistrationComponent {
   getClients() {
     this.clients = this.clientService.getClients();
   }
+
+  onDelete(id: number) {
+    const confirmed = confirm(
+      '¿Estás seguro de que deseas eliminar este cliente?'
+    );
+    if (confirmed) {
+      this.clientService.deleteClient(id);
+      alert('Cliente eliminado correctamente.');
+      this.getClients();
+    }
+  }
 }

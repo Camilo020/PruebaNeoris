@@ -130,6 +130,7 @@
         <th>Last Name</th>
         <th>Phone</th>
         <th>Email</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -140,6 +141,11 @@
         <td>{{ client.LastName }}</td>
         <td>{{ client.Phone }}</td>
         <td>{{ client.Email }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(client.Id)">
+            Eliminar
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
