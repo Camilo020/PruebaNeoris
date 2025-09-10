@@ -13,12 +13,16 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { RegistrationComponent } from './components/registration/registration.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HeaderComponent } from './core/layout/header/header.component';
+import { FooterComponent } from './core/layout/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
