@@ -17,6 +17,7 @@ export class RegistrationComponent {
   firstName: string = '';
   lastName: string = '';
   phone: string = '';
+  email: string = '';
 
   clients: Client[] = [];
 
@@ -44,6 +45,7 @@ export class RegistrationComponent {
       FirstName: this.firstName,
       LastName: this.lastName,
       Phone: this.phone,
+      Email: this.email,
     };
 
     this.clientService.saveClient(client);

@@ -84,7 +84,31 @@
         >
           <div *ngIf="phoneModel.errors?.['required']">Phone is required.</div>
           <div *ngIf="phoneModel.errors?.['pattern']">
-            The telephone must only contain numbers.
+            Phone must only contain numbers.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo Electrónico:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          #emailModel="ngModel"
+          [class.is-invalid]="emailModel.invalid && emailModel.touched"
+          required
+          email
+        />
+        <div
+          *ngIf="emailModel.invalid && emailModel.touched"
+          class="invalid-feedback"
+        >
+          <div *ngIf="emailModel.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailModel.errors?.['email']">
+            Email format is not valid.
           </div>
         </div>
       </div>
@@ -105,6 +129,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Phone</th>
+        <th>Email</th>
       </tr>
     </thead>
     <tbody>
@@ -114,6 +139,7 @@
         <td>{{ client.FirstName }}</td>
         <td>{{ client.LastName }}</td>
         <td>{{ client.Phone }}</td>
+        <td>{{ client.Email }}</td>
       </tr>
     </tbody>
   </table>
